@@ -22,9 +22,10 @@ Repositori ini berisi konfigurasi infrastruktur basis data menggunakan Docker (P
 1. Clone repositori:
 ```bash
 git clone [https://github.com/Kxrumii/MBD-Proyek1.git](https://github.com/Kxrumii/MBD-Proyek1.git)
-cd MBD-Proyek1```
+cd MBD-Proyek1
+```
 2. Buat file .env berdasarkan template .env.example:
-```cp .env.example .env```
+`cp .env.example .env`
 3. Sesuaikan nilai di dalam file .env dengan kredensial yang diinginkan.
 4. Jalankan kontainer menggunakan Docker Compose:
-```docker compose up -d```
+`docker compose up -d`
