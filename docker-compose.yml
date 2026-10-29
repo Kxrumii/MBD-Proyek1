@@ -1,0 +1,39 @@
+services:
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: postgres_${NAMA}
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "22${NIM_SUFFIX}:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    networks:
+      - mbd_network
+
+  pgadmin4:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin_${NAMA}
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+    ports:
+      - "44${NIM_SUFFIX}:80"
+    depends_on:
+      - postgres_db
+    networks:
+      - mbd_network
+
+networks:
+  mbd_network:
+    driver: bridge
+
+volumes:
+  pg_data:
